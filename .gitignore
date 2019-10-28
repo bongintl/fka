@@ -1,0 +1,9 @@
+.c9
+.cache
+node_modules
+web/assets
+
+/.env
+/.idea
+/vendor
+.DS_Store
