@@ -1,9 +1,8 @@
+{% import 'macros/macros' as m %}
 <div class="dx xww">
-{% for image in images %}
-
-    <div class="s-w1 s-h1 m-w2 m-h2 border">
-        {% include 'modules/utils/image' with { image: image, ratio: 1 } only %}
-    </div>
-    
-{% endfor %}
+    {% for image in images %}
+        <div class="s-w1 s-h1 m-w2 m-h2 border" data-dynamic-background="{{ m.srcset( image ) }}">
+            {% include 'modules/utils/image' with { image: image, ratio: 1 } only %}
+        </div>
+    {% endfor %}
 </div>

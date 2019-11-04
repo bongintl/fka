@@ -1,6 +1,8 @@
+{% import 'macros/macros' as m %}
+
 <div class="dx xww">
-    {% for record in records %}
-        <div class="s-w2 s-h2 m-w6 m-h6 border">
+    {% for record in records if record.image %}
+        <div class="s-w2 s-h2 m-w6 m-h6 border" data-dynamic-background="{{ m.srcset( image ) }}">
             {% include 'modules/utils/image' with { image: record.image, ratio: 1 } only %}
         </div>
         <div class="s-w2 s-h2 m-w6 m-h6">

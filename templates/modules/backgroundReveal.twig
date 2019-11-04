@@ -1,5 +1,7 @@
-{% if frame == 'none' %}
-    <div class="w12col h12col border"></div>
-{% else %}
-    {% include 'modules/utils/' ~ frame with { rows: 3 } only %}
-{% endif %}
+<div data-dynamic-background="none">
+    {% if frame == 'none' %}
+        <div class="w12col h12col border"></div>
+    {% else %}
+        {% include 'modules/utils/' ~ frame with { rows: 3 } only %}
+    {% endif %}
+</div>

@@ -7334,11 +7334,89 @@ var update = function update() {
 
 update();
 window.addEventListener('resize', update);
-},{"lodash/flatten":"node_modules/lodash/flatten.js","./utils/observer":"js/utils/observer.js","intersection-observer-polyfill":"node_modules/intersection-observer-polyfill/index.js"}],"js/main.js":[function(require,module,exports) {
+},{"lodash/flatten":"node_modules/lodash/flatten.js","./utils/observer":"js/utils/observer.js","intersection-observer-polyfill":"node_modules/intersection-observer-polyfill/index.js"}],"js/dynamic-background.js":[function(require,module,exports) {
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+var wait = function wait(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+};
+
+var createBackground = function createBackground(srcset) {
+  return new Promise(function (resolve) {
+    var img = new Image();
+    img.className = 'psf t0 l0 w100p h100p ofcover';
+    img.style.opacity = 0;
+    img.style.transition = 'opacity .5s';
+
+    img.onload = function () {
+      return resolve(img);
+    };
+
+    img.srcset = srcset;
+  });
+};
+
+_toConsumableArray(document.querySelectorAll('.dynamic-background')).forEach(function (container) {
+  var background = null;
+
+  var transition = function transition(element) {
+    if (background) {
+      var prev = background;
+      wait(element ? 500 : 0).then(function () {
+        prev.style.opacity = 0;
+        return wait(500);
+      }).then(function () {
+        container.removeChild(prev);
+      });
+    }
+
+    if (element) {
+      container.appendChild(element);
+      wait(0).then(function () {
+        return element.style.opacity = 1;
+      });
+    }
+
+    background = element;
+  };
+
+  _toConsumableArray(container.querySelectorAll('[data-dynamic-background]')).forEach(function (el) {
+    var hovered = false;
+    el.addEventListener('mouseenter', function () {
+      hovered = true;
+
+      if (el.dataset.dynamicBackground === 'none') {
+        transition(null);
+      } else {
+        createBackground(el.dataset.dynamicBackground).then(function (img) {
+          if (!hovered) return;
+          transition(img);
+        });
+      }
+    });
+    el.addEventListener('mouseleave', function () {
+      hovered = false; // if ( background ) {
+      //     container.removeChild( background );
+      //     background = null;
+      // }
+    });
+  });
+});
+},{}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
 require("./image");
 
 require("./borders");
-},{"./image":"js/image.js","./borders":"js/borders.js"}]},{},["js/main.js"], null)
+
+require("./dynamic-background");
+},{"./image":"js/image.js","./borders":"js/borders.js","./dynamic-background":"js/dynamic-background.js"}]},{},["js/main.js"], null)
 //# sourceMappingURL=/js/main.js.map

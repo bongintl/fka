@@ -1,12 +1,15 @@
 {% import 'macros/macros' as m %}
 {% extends '_layout' %}
 {% block content %}
-    <main class="page" style="
-        --text-color: {{ entry.textColor ?? 'black' }};
-        --background-color: {{ entry.backgroundColor ?? 'white' }};
-        color: {{ entry.textColor ?? 'black' }};
-        background: {{ entry.backgroundColor ?? 'white' }};
-    ">
+    <main
+        class="page {{ entry.dynamicBackground ? 'dynamic-background' : '' }}"
+        style="
+            --text-color: {{ entry.textColor ?? 'black' }};
+            --background-color: {{ entry.backgroundColor ?? 'white' }};
+            color: {{ entry.textColor ?? 'black' }};
+            background: {{ entry.backgroundColor ?? 'white' }};
+        "
+    >
         {% if entry.backgroundImage | length %}
             {% set image = entry.backgroundImage.one %}
             {% set textIsLight = craft.imager.isLight( entry.textColor.hex ) %}
@@ -31,6 +34,8 @@
                 src="{{ craft.imager.transformImage( adjustedImage, { width: 4 }) }}"
             />
         {% endif %}
-        {% include 'blocks' with { blocks: entry.modules } %}
+        <div class="z1">
+            {% include 'blocks' with { blocks: entry.modules } %}
+        </div>
     </main>
 {% endblock %}

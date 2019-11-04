@@ -1,22 +1,26 @@
+{% import 'macros/macros' as m %}
+
 <div class="dx xww">
-    {% for record in records %}
-        <div class="s-w2 s-h2 m-w4 m-h4 border">
-            {% include 'modules/utils/image' with { image: record.image, ratio: 1 } only %}
-        </div>
-        <div class="s-w2 s-h2 m-w4 m-h4">
-            {% switch record.text | length %}
-                {% case 1 %}
-                    <div class="s-w2 s-h2 m-w4 m-h4 border">
-                        {% include 'modules/utils/text' with record.text[ 0 ] only %}
-                    </div>
-                {% case 2 %}
-                    <div class="s-w2 s-h4 m-w4 m-h8 border">
-                        {% include 'modules/utils/text' with record.text[ 0 ] only %}
-                    </div>
-                    <div class="s-w2 s-h4 m-w4 m-h8 border">
-                        {% include 'modules/utils/text' with record.text[ 1 ] only %}
-                    </div>
-            {% endswitch %}
+    {% for record in records if record.image %}
+        <div class="dx xww s-w1 s-h2 m-w2 m-h4" data-dynamic-background="{{ m.srcset( record.image ) }}">
+            <div class="s-w2 s-h2 m-w4 m-h4 border">
+                {% include 'modules/utils/image' with { image: record.image, ratio: 1 } only %}
+            </div>
+            <div class="s-w2 s-h2 m-w4 m-h4">
+                {% switch record.text | length %}
+                    {% case 1 %}
+                        <div class="s-w2 s-h2 m-w4 m-h4 border">
+                            {% include 'modules/utils/text' with record.text[ 0 ] only %}
+                        </div>
+                    {% case 2 %}
+                        <div class="s-w2 s-h4 m-w4 m-h8 border">
+                            {% include 'modules/utils/text' with record.text[ 0 ] only %}
+                        </div>
+                        <div class="s-w2 s-h4 m-w4 m-h8 border">
+                            {% include 'modules/utils/text' with record.text[ 1 ] only %}
+                        </div>
+                {% endswitch %}
+            </div>
         </div>
     {% endfor %}
 </div>

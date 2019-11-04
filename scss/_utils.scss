@@ -44,6 +44,11 @@
 );
 
 @include util(
+    ( z: z-index ),
+    ( -1, 0, 1, 2, 3, 4 )
+);
+
+@include util(
     (
         pt: padding-top,
         pl: padding-left,
