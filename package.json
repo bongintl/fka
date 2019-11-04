@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel watch scss/style.scss js/main.js --out-dir web/build --no-hmr",
-    "build": "parcel build scss/style.scss js/main.js --out-dir web/build"
+    "dev": "parcel watch scss/style.scss js/main.js --out-dir web/build --no-hmr --public-url /build",
+    "build": "parcel build scss/style.scss js/main.js --out-dir web/build --public-url /build"
   },
   "keywords": [],
   "author": "",
