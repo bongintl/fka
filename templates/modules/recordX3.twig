@@ -1,0 +1,22 @@
+<div class="dx xww">
+    {% for record in records %}
+        <div class="s-w2 s-h2 m-w6 m-h6 border">
+            {% include 'modules/utils/image' with { image: record.image, ratio: 1 } only %}
+        </div>
+        <div class="s-w2 s-h2 m-w6 m-h6">
+            {% switch record.text | length %}
+                {% case 1 %}
+                    <div class="s-w2 s-h2 m-w6 m-h6 border">
+                        {% include 'modules/utils/text' with record.text[ 0 ] only %}
+                    </div>
+                {% case 2 %}
+                    <div class="s-w2 s-h4 m-w6 m-h12 border">
+                        {% include 'modules/utils/text' with record.text[ 0 ] only %}
+                    </div>
+                    <div class="s-w2 s-h4 m-w6 m-h12 border">
+                        {% include 'modules/utils/text' with record.text[ 1 ] only %}
+                    </div>
+            {% endswitch %}
+        </div>
+    {% endfor %}
+</div>

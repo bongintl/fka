@@ -1,0 +1,9 @@
+{% import 'macros/macros' as m %}
+{% set image = image ?? null %}
+{% if image %}
+    {% set ratio = ratio ?? ( image.height / image.width ) %}
+    <img class="fill ofcover border-show" {{ m.attrs({
+        'data-srcset': m.srcset( image, ratio ),
+        src: image.getUrl({ width: 4 })
+    }) }}>
+{% endif %}

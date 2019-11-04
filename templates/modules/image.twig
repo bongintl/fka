@@ -1,0 +1,10 @@
+<div class="dx xww">
+    <div class="s-w1 s-h1 border">
+        {% include 'modules/utils/image' with { image: image, ratio: 1 } only %}
+        {% if frame == 'frame1' %}
+            {% include 'modules/utils/frame1' %}
+        {% elseif frame == 'frame2' %}
+            {% include 'modules/utils/frame2' %}
+        {% endif %}
+    </div>
+</div>

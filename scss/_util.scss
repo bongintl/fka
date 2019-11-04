@@ -1,0 +1,88 @@
+$breakpoints: (
+    s: 0px,
+    m: 768px,
+    l: 1024px,
+    xl: 1200px
+);
+
+@mixin breakpoints ( $class ) {
+    .#{ $class } {
+        @content;
+    }
+    @each $breakpointName, $breakpointWidth in $breakpoints {
+        @media ( min-width: $breakpointWidth ) {
+            .#{ $breakpointName }-#{ $class } {
+                @content;
+            }
+        }
+    }
+}
+
+@function strip-units ( $number ) {
+    @return $number / ( $number * 0 + 1 );
+}
+
+@function decimals ( $number, $precision ) {
+    $fract: $number - floor( $number );
+    $i: 0;
+    @while $fract != floor( $fract ) and $i < $precision {
+        $fract: $fract * 10;
+        $i: $i + 1;
+    }
+    @return floor( $fract );
+}
+
+@function escape-number ( $value, $unitless: false ) {
+    @if type-of( $value ) != 'number' {
+        @return $value;
+    }
+    $n: strip-units( $value );
+    $int: floor( $n );
+    $fract: decimals( $n, 2 );
+    $ret: $int;
+    @if $fract != 0 {
+        $ret: $ret + '-' + $fract;
+    }
+    @if $unitless { @return $ret; }
+    $unit: unit( $value );
+    @if ( $unit == '%' ) { $unit: 'p'; }
+    @return $ret + $unit;
+}
+
+@function to-map ( $x ) {
+    @if type-of( $x ) == 'map' {
+        @return $x;
+    } @else if type-of( $x ) == 'list' {
+        $map: ();
+        @each $item in $x {
+            $map: map-merge( $map, ( $item: $item ) );
+        }
+        @return $map;
+    } @else {
+        @return ( $x: $x )
+    }
+};
+
+@mixin util-classes ( $prefix, $props, $values, $unitless ) {
+    @each $propName, $prop in $props {
+        @each $valueName, $value in $values {
+            $valueName: escape-number( $valueName, $unitless );
+            $class: $prefix + $propName + $valueName;
+            .#{ $class } {
+                #{ $prop }: $value;
+            }
+        }
+    }
+}
+
+@mixin util ( $props, $values, $unitless: false ) {
+    $props: to-map( $props );
+    $values: to-map( $values );
+    @include util-classes( '', $props, $values, $unitless );
+    @each $breakpointName, $breakpointWidth in $breakpoints {
+        @media ( min-width: $breakpointWidth ) {
+            $prefix: $breakpointName + '-';
+            @include util-classes( $prefix, $props, $values, $unitless );
+        }
+    }
+}

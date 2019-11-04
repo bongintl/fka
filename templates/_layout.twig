@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        {% if seo is defined %}
+            {% hook "seo" %}
+        {% else %}
+            <title>{{ siteName }}</title>
+        {% endif %}
+        
+        {#
+    	{% if globals.favicon16 | length %}<link rel="icon" href="{{ globals.favicon16.first.url }}" sizes="16x16">{% endif %}
+        {% if globals.favicon32 | length %}<link rel="icon" href="{{ globals.favicon32.first.url }}" sizes="32x32">{% endif %}
+        #}
+        
+        <link rel="stylesheet" href="{{ siteUrl }}build/scss/style.css" type="text/css" />
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+        <script type="text/javascript" src="{{ siteUrl }}build/js/main.js"></script>
+    </body>
+</html>

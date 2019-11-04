@@ -1,0 +1,5 @@
+{% if entry.pageSelect | length == 0 %}
+    Select a home page from the admin panel
+{% else %}
+    {% include 'page' with { entry: entry.pageSelect.one } %}
+{% endif %}

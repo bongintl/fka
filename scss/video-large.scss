@@ -1,0 +1,6 @@
+.video-large {
+    height: 150vw;
+    @media ( min-width: 768px ) {
+        height: 100vw * ( 9 / 16 );
+    }
+}

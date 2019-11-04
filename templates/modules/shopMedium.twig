@@ -1,0 +1,9 @@
+<div class="dx xww">
+    {% for product in products %}
+        <div class="s-w2 s-h2 m-w4 m-h4 border">
+            <a href="{{ product.productLink }}" target="_blank" class="fill">
+                {% include 'modules/utils/image' with { image: product.image.one, ratio: 1 } only %}
+            </a>
+        </div>
+    {% endfor %}
+</div>

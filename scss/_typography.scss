@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Pitch";
+    src: url('./fonts/Pitch_Regular.otf');
+}
+
+html {
+    font-family: "Pitch";
+}
+
+a {
+    color: inherit;
+}
+
+body {
+    background: var( --background-color );
+    color: var( --text-color );
+    font-size: 13px;
+    @include large {
+        font-size: 14px;
+    }
+}

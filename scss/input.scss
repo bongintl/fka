@@ -1,0 +1,16 @@
+.input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    &::placeholder {
+        color: inherit;
+        text-decoration: underline;
+        text-transform: lowercase;
+    }
+    &:focus {
+        outline: none; 
+    }
+    &[type=submit] {
+        cursor: pointer;
+    }
+}

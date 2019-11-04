@@ -1,0 +1,14 @@
+{% import 'macros/macros' as m %}
+{% set text = text ?? '' %}
+{% set link = link ?? null %}
+{% set target = target ?? '_self' %}
+{% set class = 'fill dx xac xjc tac pt1 pb1 pl1 pr1 border-show' %}
+{% if link %}
+    <a class="{{ class }}" href="{{ link }}" target="{{ target }}">
+        {{ text | raw }}
+    </a>
+{% else %}
+    <div class="{{ class }}">
+        {{ text | raw }}
+    </div>
+{% endif %}

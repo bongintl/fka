@@ -1,0 +1,112 @@
+{% for block in blocks.all %}
+    {% switch block.type %}
+        {% case 'recordLargeLeft' %}
+            {% include 'modules/recordLargeLeft' with {
+                image: block.image | length
+                    ? block.image.one
+                    : null,
+                text: block.text
+            } only %}
+        {% case 'recordLargeCenter' %}
+            {% include 'modules/recordLargeCenter' with {
+                image: block.image | length
+                    ? block.image.one
+                    : null,
+                text: block.text
+            } only %}
+        {% case 'recordMedium' %}
+            {% include 'modules/recordMedium' with {
+                image: block.image | length
+                    ? block.image.one
+                    : null,
+                text: block.text
+            } only %}
+        {% case 'recordX2' %}
+            {% include 'modules/recordX2' with {
+                records: [{
+                    image: block.imageOne | length
+                        ? block.imageOne.one
+                        : null,
+                    text: block.textOne
+                }, {
+                    image: block.imageTwo | length
+                        ? block.imageTwo.one
+                        : null,
+                    text: block.textTwo
+                }]
+            } only %}
+        {% case 'recordX3' %}
+            {% include 'modules/recordX3' with {
+                records: [{
+                    image: block.imageOne | length
+                        ? block.imageOne.one
+                        : null,
+                    text: block.textOne
+                }, {
+                    image: block.imageTwo | length
+                        ? block.imageTwo.one
+                        : null,
+                    text: block.textTwo
+                }, {
+                    image: block.imageThree | length
+                        ? block.imageThree.one
+                        : null,
+                    text: block.textThree
+                }]
+            } only %}
+        {% case 'image' %}
+            {% include 'modules/image' with {
+                image: block.image | length
+                    ? block.image.one
+                    : null,
+                frame: block.frame
+            } only %}
+        {% case 'imageX2' %}
+            {% include 'modules/imageX2' with {
+                images: block.images | length
+                    ? block.images.all
+                    : null
+            } only %}
+        {% case 'backgroundReveal' %}
+            {% include 'modules/backgroundReveal' with {
+                frame: block.frame
+            } only %}
+        {% case 'videoLarge' %}
+            {% include 'modules/videoLarge' with {
+                embed: block.embed
+            } only %}
+        {% case 'videoMedium' %}
+            {% include 'modules/videoMedium' with {
+                embed: block.embed,
+                text: block.text
+            } only %}
+        {% case 'videoSmall' %}
+            {% include 'modules/videoSmall' with {
+                embed: block.embed,
+                text: block.text
+            } only %}
+        {% case 'shopMedium' %}
+            {% include 'modules/shopMedium' with {
+                products: block.products.all
+            } only %}
+        {% case 'shopLarge' %}
+            {% include 'modules/shopLarge' with {
+                products: block.products.all
+            } only %}
+        {% case 'tour' %}
+            {% include 'modules/tour' with {
+                name: block.tourName,
+                dates: block.dates
+            } only %}
+        {% case 'signUp' %}
+            {% include 'modules/signUp' with {
+                cta: block.cta,
+            } only %}
+        {% case 'links' %}
+            {% include 'modules/links' with {
+                links: block.links,
+            } only %}
+        {% default %}
+            Unknown block: {{ block.type }}
+    {% endswitch %}
+{% endfor %}

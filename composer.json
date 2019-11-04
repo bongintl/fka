@@ -1,6 +1,10 @@
 {
   "require": {
+    "aelvan/imager": "^2.3",
     "craftcms/cms": "^3.0.0",
+    "mikestecker/craft-videoembedder": "1.1.4",
+    "vaersaagod/matrixmate": "^1.2",
+    "verbb/super-table": "^2.3",
     "vlucas/phpdotenv": "^3.4.0"
   },
   "autoload": {

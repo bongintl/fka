@@ -5,13 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel watch scss/style.scss js/main.js --out-dir web",
-    "build": "parcel build scss/style.scss js/main.js --out-dir web"
+    "dev": "parcel watch scss/style.scss js/main.js --out-dir web/build --no-hmr",
+    "build": "parcel build scss/style.scss js/main.js --out-dir web/build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "parcel-bundler": "^1.12.4"
+    "es6-map": "^0.1.5",
+    "intersection-observer": "^0.7.0",
+    "intersection-observer-polyfill": "^0.1.0",
+    "parcel-bundler": "^1.12.4",
+    "picturefill": "^3.0.3",
+    "resize-observer-polyfill": "^1.5.1"
+  },
+  "devDependencies": {
+    "sass": "^1.23.1"
   }
 }

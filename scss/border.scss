@@ -1,0 +1,94 @@
+:root {
+    --border-collapsed-size: 16;
+    --border-collapsed-size-px: calc( var( --border-collapsed-size ) * 1px );
+}
+
+.border {
+    // overflow: hidden;
+    --border-scale-x: 1;
+    --border-scale-y: 1;
+    &--visible {
+        --border-scale-x: calc( ( var( --border-container-width ) / 2 + 1 ) / var( --border-collapsed-size ) );
+        --border-scale-y: calc( ( var( --border-container-height ) / 2 + 1 ) / var( --border-collapsed-size ) );
+    }
+    &__segment {
+        z-index: 10;
+        background: var( --text-color, black );
+        position: absolute;
+        transition-property: transform;
+        transition-duration: .1s;
+        transition-timing-function: ease-out;
+        &--tl {
+            top: -1px;
+            left: -1px;
+            width: var(--border-collapsed-size-px);
+            height: 1px;
+            transform-origin: 0 0;
+            transform: scale( var( --border-scale-x ), 1 );
+        }
+        &--tr {
+            top: -1px;
+            right: 0;
+            width: var(--border-collapsed-size-px);
+            height: 1px;
+            transform-origin: 100% 0;
+            transform: scale( var( --border-scale-x ), 1 );
+        }
+        &--rt {
+            top: -1px;
+            right: 0px;
+            width: 1px;
+            height: var(--border-collapsed-size-px);
+            transform-origin: 100% 0;
+            transform: scale( 1, var( --border-scale-y ) );
+        }
+        &--rb {
+            bottom: 0;
+            right: 0;
+            width: 1px;
+            height: var(--border-collapsed-size-px);
+            transform-origin: 100% 100%;
+            transform: scale( 1, var( --border-scale-y ) );
+        }
+        &--br {
+            bottom: 0;
+            right: 0;
+            width: var(--border-collapsed-size-px);
+            height: 1px;
+            transform-origin: 100% 100%;
+            transform: scale( var( --border-scale-x ), 1 );
+        }
+        &--bl {
+            bottom: 0;
+            left: -1px;
+            width: var(--border-collapsed-size-px);
+            height: 1px;
+            transform-origin: 0 100%;
+            transform: scale( var( --border-scale-x ), 1 );
+        }
+        &--lb {
+            left: -1px;
+            bottom: 0;
+            width: 1px;
+            height: var(--border-collapsed-size-px);
+            transform-origin: 0 100%;
+            transform: scale( 1, var( --border-scale-y ) );
+        }
+        &--lt {
+            top: -1px;
+            left: -1px;
+            width: 1px;
+            height: var(--border-collapsed-size-px);
+            transform-origin: 0 0;
+            transform: scale( 1, var( --border-scale-y ) );
+        }
+    }
+}
+
+.border-show {
+    opacity: 0;
+    transition: opacity .25s .5s;
+    .border--visible & {
+        opacity: 1;
+    }
+}

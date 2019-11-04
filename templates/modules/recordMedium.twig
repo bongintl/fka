@@ -1,0 +1,43 @@
+{% import 'macros/macros' as m %}
+
+<div class="dx xww">
+    <div class="s-w1 s-h1 m-w3 m-h3 m-xo1 border">
+        {% include 'modules/utils/image' with { image: image, ratio: 1 } only %}
+    </div>
+    <div class="s-w2 s-h1 m-w3 m-h3 m-xo0">
+        {% if text | length <= 3 %}
+            <div class="s-w2 s-h1 m-w3 m-h3 border">
+                {% include 'modules/utils/text' with text[ 0 ] only %}
+            </div>
+        {% else %}
+            <div class="s-w2 s-h2 m-w3 m-h6 border">
+                {% include 'modules/utils/text' with text[ 0 ] only %}
+            </div>
+            <div class="s-w2 s-h2 m-w3 m-h6 border">
+                {% include 'modules/utils/text' with text[ 1 ] only %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="s-w2 s-h1 m-w3 m-h3 m-xo2">
+        {% switch text | length %}
+            {% case 2 %}
+                <div class="s-w2 s-h1 m-w3 m-h3 border">
+                    {% include 'modules/utils/text' with text[ 1 ] only %}
+                </div>
+            {% case 3 %}
+                <div class="s-w2 s-h2 m-w3 m-h6 border">
+                    {% include 'modules/utils/text' with text[ 1 ] only %}
+                </div>
+                <div class="s-w2 s-h2 m-w3 m-h6 border">
+                    {% include 'modules/utils/text' with text[ 2 ] only %}
+                </div>
+            {% case 4 %}
+                <div class="s-w2 s-h2 m-w3 m-h6 border">
+                    {% include 'modules/utils/text' with text[ 2 ] only %}
+                </div>
+                <div class="s-w2 s-h2 m-w3 m-h6 border">
+                    {% include 'modules/utils/text' with text[ 3 ] only %}
+                </div>
+        {% endswitch %}
+    </div>
+</div>

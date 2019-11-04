@@ -1,0 +1,134 @@
+@include util(
+    ( d: display ),
+    ( n: none, b: block, i: inline, ib: inline-block, x: flex )
+);
+
+@include util(
+    ( ps: position ),
+    ( a: absolute, f: fixed, s: sticky )
+);
+
+@include util(
+    ( xd: flex-direction ),
+    ( r: row, rr: row-reverse, c: column, cr: column-reverse )
+);
+
+@include util(
+    ( xa: align-items ),
+    ( c: center, b: baseline, s: stretch, fs: flex-start, fe: flex-end )
+);
+
+@include util(
+    ( xj: justify-content ),
+    ( c: center, b: space-between, a: space-around, s: flex-start, e: flex-end )
+);
+
+@include util(
+    ( xw: flex-wrap ),
+    ( w: wrap, wr: wrap-reverse, n: none )
+);
+
+@include util(
+    ( x: flex ),
+    ( i: initial, x: 1, a: auto, n: none )
+);
+
+@include util(
+    ( xo: order ),
+    ( -1: -1, 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, i: initial )
+);
+
+@include util(
+    ( o: opacity ),
+    ( 0, 1 )
+);
+
+@include util(
+    (
+        pt: padding-top,
+        pl: padding-left,
+        pb: padding-bottom,
+        pr: padding-right,
+        mt: margin-top,
+        ml: margin-left,
+        mb: margin-bottom,
+        mr: margin-right
+    ),
+    (
+        0: 0,
+        1: 1rem,
+        2: 2rem,
+        3: 3rem,
+        4: 4rem,
+        5: 5rem
+    ),
+);
+
+@include util(
+    ( w: width, h: height ),
+    (
+        12: 100vw / 12,
+        8: 100vw / 8,
+        6: 100vw / 6,
+        5: 100vw / 5,
+        4: 100vw / 4,
+        3: 100vw / 3,
+        2: 100vw / 2,
+        1: 100vw,
+        1col: 100vw * 1/12,
+        2col: 100vw * 2/12,
+        3col: 100vw * 3/12,
+        4col: 100vw * 4/12,
+        5col: 100vw * 5/12,
+        6col: 100vw * 6/12,
+        7col: 100vw * 7/12,
+        8col: 100vw * 8/12,
+        9col: 100vw * 9/12,
+        10col: 100vw * 10/12,
+        11col: 100vw * 11/12,
+        12col: 100vw * 12/12,
+        100p: 100%
+    )
+);
+
+@include util(
+    ( t: top, l: left ),
+    (
+        0: 0,
+        1col: 100vw * 1/12,
+        2col: 100vw * 2/12,
+        3col: 100vw * 3/12,
+        4col: 100vw * 4/12,
+        5col: 100vw * 5/12,
+        6col: 100vw * 6/12,
+        7col: 100vw * 7/12,
+        8col: 100vw * 8/12,
+        9col: 100vw * 9/12,
+        10col: 100vw * 10/12,
+        11col: 100vw * 11/12,
+        12col: 100vw * 12/12
+    )
+);
+
+@include util(
+    ( ta: text-align ),
+    ( l: left, c: center, r: right )
+);
+
+@include util(
+    ( o: overflow, ox: overflow-x, oy: overflow-y ),
+    ( h: hidden, s: scroll )
+);
+
+@include util(
+    ( of: object-fit ),
+    ( cover, contain )
+);
+
+@include breakpoints ( 'fill' ) {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}

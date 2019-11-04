@@ -1,0 +1,36 @@
+{% import 'macros/macros' as m %}
+{% extends '_layout' %}
+{% block content %}
+    <main class="page" style="
+        --text-color: {{ entry.textColor ?? 'black' }};
+        --background-color: {{ entry.backgroundColor ?? 'white' }};
+        color: {{ entry.textColor ?? 'black' }};
+        background: {{ entry.backgroundColor ?? 'white' }};
+    ">
+        {% if entry.backgroundImage | length %}
+            {% set image = entry.backgroundImage.one %}
+            {% set textIsLight = craft.imager.isLight( entry.textColor.hex ) %}
+            {% set blackPoint = textIsLight ? 0 : -50 %}
+            {% set whitePoint = textIsLight ? 306 : 255 %}
+            {% set gamma = textIsLight ? 1.2 : 0.85 %}
+            {% set adjustedImage = craft.imager.transformImage( image,
+                { effects: { levels: [ blackPoint, gamma, whitePoint ] } }
+            ) %}
+            {% set sizes = craft.imager.transformImage( adjustedImage,
+                [
+                    { width: 400 },
+                    { width: 600 },
+                    { width: 800 },
+                    { width: 1000 },
+                    { width: 1600 }
+                ]
+            ) %}
+            <img
+                class="psf t0 l0 w100p h100p ofcover"
+                data-srcset="{{ sizes | srcset }}"
+                src="{{ craft.imager.transformImage( adjustedImage, { width: 4 }) }}"
+            />
+        {% endif %}
+        {% include 'blocks' with { blocks: entry.modules } %}
+    </main>
+{% endblock %}

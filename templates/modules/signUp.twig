@@ -1,0 +1,70 @@
+<form class="dx xww" action="//mailouts.beggars.com/subscribe" method="POST" accept-charset="utf-8">
+    
+    <input type="hidden" name="list" value="s892vri5PV2OdsUeeqJWBHdA"/>
+    
+    <div class="s-w2 s-h2 m-w4 m-h4 border">
+        {% include 'modules/utils/text' with { text: cta } only %}
+    </div>
+    
+    <div class="s-w2 s-h2 m-w4 m-h4">
+        <div class="s-w2 s-h4 m-w4 m-h8 border">
+            {% include 'modules/utils/input' with {
+                attrs: {
+                    type: 'text',
+                    name: 'name',
+                    id: 'name',
+                    placeholder: 'Your name'
+                }
+            } only %}
+            {#<input class="input fill dx xac xjc tac" type="text" name="name" id="name" placeholder="Your name">#}
+        </div>
+        <div class="s-w2 s-h4 m-w4 m-h8 border s-xo3 m-xoi">
+            {% include 'modules/utils/input' with {
+                attrs: {
+                    type: 'email',
+                    name: 'email',
+                    id: 'email',
+                    placeholder: 'Your email'
+                }
+            } only %}
+            {#<input class="input fill dx xac xjc tac" type="text" name="city" id="city" placeholder="Your city">#}
+
+        </div>
+    </div>
+    <div class="s-w2 s-h2 m-w4 m-h4">
+        <div class="s-w2 s-h4 m-w4 m-h8 border s-xo2 m-xoi">
+            
+            {% include 'modules/utils/input' with {
+                attrs: {
+                    type: 'text',
+                    name: 'city',
+                    id: 'city',
+                    placeholder: 'Your city'
+                }
+            } only %}
+            {#<input class="input fill dx xac xjc tac" type="email" name="email" id="email" placeholder="Your email">#}
+        </div>
+        <div class="s-w2 s-h4 m-w4 m-h8 border">
+            {% include 'modules/utils/input' with {
+                attrs: {
+                    type: 'text',
+                    name: 'country',
+                    id: 'country',
+                    placeholder: 'Your country'
+                }
+            } only %}
+            {#<input class="input fill dx xac xjc tac" type="text" name="country" id="country" placeholder="Your country">#}
+        </div>
+    </div>
+    
+    <div class="s-w2 s-h2 m-w4 m-h4 border">
+        {% include 'modules/utils/input' with {
+            attrs: {
+                type: 'submit',
+                name: 'submit',
+                id: 'submit',
+                value: 'sign me up'
+            }
+        } only %}
+    </div>
+</form>

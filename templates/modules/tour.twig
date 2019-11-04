@@ -1,0 +1,19 @@
+<div class="dx xww">
+    <div class="s-w2 s-h2 m-w4 m-h4 border">
+        {% include 'modules/utils/text' with { text: name } only %}
+    </div>
+    {% for row in dates %}
+        <div class="s-w2 s-h2 m-w4 m-h4 border">
+            {% include 'modules/utils/text' with {
+                link: row.link,
+                target: '_blank',
+                text: [
+                    row.date | date('d/m'),
+                    row.location,
+                    row.venue,
+                    'buy tickets'
+                ] | join('<br/>')
+            } only %}
+        </div>
+    {% endfor %}
+</div>
