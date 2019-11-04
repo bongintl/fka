@@ -1,7 +1,7 @@
 import flatten from 'lodash/flatten';
 import createObserver from './utils/observer';
 import 'intersection-observer-polyfill';
-const { observe } = createObserver( IntersectionObserver );
+const { observe, unobserve } = createObserver( IntersectionObserver );
 
 const createSegments = container => {
     const delays = Array( 4 ).fill( 0 ).map( _ => Math.random() * .5 + 's' );
@@ -17,7 +17,10 @@ const els = [ ...document.querySelectorAll( '.border' ) ];
 els.forEach( createSegments );
 
 const onIntersect = entry => {
-    entry.target.classList.toggle( 'border--visible', entry.isIntersecting );
+    if ( entry.isIntersecting ) {
+        entry.target.classList.add( 'border--visible' );
+        unobserve( entry.target, onIntersect );
+    }
 }
 
 const update = () => {
